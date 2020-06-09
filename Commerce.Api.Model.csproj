@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
+    <RootNamespace>Commerce.Api.Model</RootNamespace>
+    <Authors>Flemming Rothmann</Authors>
+    <Company>fiftytwo.com</Company>
+    <PackageId>52eCommerce.api.model</PackageId>
+    <Product>52eCommerce api model</Product>
+    <Description>Provides a model for 52ECOMMERCE v3 api requests and responses.
+      The Newtonsoft.Json package is required as typeconverters are utilized.</Description>
+    <Copyright>fiftytwo.com</Copyright>
+    <PackageTags>fiftytwo</PackageTags>
+    <Version>1.0.3</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>
