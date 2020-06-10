@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net452</TargetFrameworks>
+    <RootNamespace>CommerceClient.Api.Online</RootNamespace>
+    <Authors>Flemming Rothmann</Authors>
+    <Company>fiftytwo.com</Company>
+    <PackageId>52eCommerce.api.online</PackageId>
+    <Product>52eCommerce api online</Product>
+    <Description>
+      Provides methods and extensions for accessing 52ECOMMERCE cloud server using its v3 api.
+      Internally it utilizes RestSharp for data transport and Newtonsoft.Json for serialization.
+    </Description>
+    <Copyright>fiftytwo.com</Copyright>
+    <PackageTags>fiftytwo, 52ECOMMERCE, eSeller Cloud</PackageTags>
+    <Version>1.0.7</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/flemmingrothmann/CommerceClient.Api</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="52eCommerce.api.model" Version="1.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

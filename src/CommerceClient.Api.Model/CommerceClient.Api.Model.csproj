@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
+    <RootNamespace>CommerceClient.Api.Model</RootNamespace>
+    <Authors>Flemming Rothmann</Authors>
+    <Company>fiftytwo.com</Company>
+    <PackageId>52eCommerce.api.model</PackageId>
+    <Product>52eCommerce api model</Product>
+    <Description>Provides a model for 52ECOMMERCE v3 api requests and responses.
+</Description>
+    <Copyright>fiftytwo.com</Copyright>
+    <PackageTags>fiftytwo, 52ECOMMERCE, eSeller Cloud</PackageTags>
+    <Version>1.0.7</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/flemmingrothmann/CommerceClient.Api</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>
