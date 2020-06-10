@@ -7,12 +7,15 @@
     <Company>fiftytwo.com</Company>
     <PackageId>52eCommerce.api.model</PackageId>
     <Product>52eCommerce api model</Product>
-    <Description>Provides a model for 52ECOMMERCE v3 api requests and responses.
-      The Newtonsoft.Json package is required as typeconverters are utilized.</Description>
+    <Description>
+      Provides a model for 52ECOMMERCE v3 api requests and responses.
+      The Newtonsoft.Json package is required as typeconverters are utilized.
+    </Description>
     <Copyright>fiftytwo.com</Copyright>
     <PackageTags>fiftytwo</PackageTags>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

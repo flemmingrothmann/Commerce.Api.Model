@@ -1,6 +1,8 @@
-﻿namespace Commerce.Api.Model
+﻿using System.Collections.Generic;
+
+namespace Commerce.Api.Model
 {
-    public class Country : ResourceResponse
+    public class Country
     {
         public int CountryId { get; set; }
         public string ExtCountryId { get; set; }
@@ -13,5 +15,6 @@
 
         // ReSharper disable once InconsistentNaming
         public string Iso3166Alpha2 { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }

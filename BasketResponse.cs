@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Commerce.Api.Model
 {
-    public class BasketResponse : ResourceResponse
+    public class BasketResponse
     {
         /// <summary>
         /// basket Id
@@ -72,5 +72,6 @@ namespace Commerce.Api.Model
         public List<PaymentResponse> Payments { get; set; }
 
         public List<ValidationMessageResponse> ValidationMessages { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }

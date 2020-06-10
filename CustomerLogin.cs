@@ -1,6 +1,8 @@
-﻿namespace Commerce.Api.Model
+﻿using System.Collections.Generic;
+
+namespace Commerce.Api.Model
 {
-    public class CustomerLogin : ResourceResponse
+    public class CustomerLogin
     {
         public int CustomerLoginId { get; set; }
         public string UserName { get; set; }
@@ -8,5 +10,6 @@
         public string Name { get; set; }
         public Currency Currency { get; set; }
         public Language Language { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }

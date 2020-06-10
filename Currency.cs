@@ -1,6 +1,8 @@
-﻿namespace Commerce.Api.Model
+﻿using System.Collections.Generic;
+
+namespace Commerce.Api.Model
 {
-    public class Currency : ResourceResponse
+    public class Currency
     {
         public int CurrencyId { get; set; }
         public string ExtCurrencyId { get; set; }
@@ -19,5 +21,6 @@
         public int GroupSize { get; set; }
         public int PositivePattern { get; set; }
         public int NegativePattern { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }

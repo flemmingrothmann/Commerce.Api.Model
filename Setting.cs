@@ -21,8 +21,6 @@ namespace Commerce.Api.Model
         /// </summary>
         public string Implementation { get; set; }
 
-#pragma warning disable CA1819 // Properties should not return arrays
         public List<string> Aliases { get; set; }
-#pragma warning restore CA1819 // Properties should not return arrays
     }
 }

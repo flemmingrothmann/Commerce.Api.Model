@@ -3,7 +3,7 @@ using Commerce.Api.Model.JsonConverters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Commerce.Api.Model
+namespace Commerce.Api.Model.RequestModels
 {
     public class BasketLineRequestBody
     {
@@ -58,12 +58,10 @@ namespace Commerce.Api.Model
             }
         }
 
-        [JsonIgnore]
-        public bool DeliveryDateIsSet { get; set; }
+        [JsonIgnore] public bool DeliveryDateIsSet { get; set; }
 
 
-        [JsonIgnore]
-        public bool PriceCalculationDateFollowsDeliveryDateIsSet { get; set; }
+        [JsonIgnore] public bool PriceCalculationDateFollowsDeliveryDateIsSet { get; set; }
 
         private bool? _PriceCalculationDateFollowsDeliveryDate;
 
@@ -97,8 +95,7 @@ namespace Commerce.Api.Model
             }
         }
 
-        [JsonIgnore]
-        public bool TagIsSet { get; set; }
+        [JsonIgnore] public bool TagIsSet { get; set; }
 
         private string _UserCode1;
 
@@ -118,8 +115,7 @@ namespace Commerce.Api.Model
 
         private string _UserCode2;
 
-        [JsonIgnore]
-        public bool UserCode1IsSet { get; set; }
+        [JsonIgnore] public bool UserCode1IsSet { get; set; }
 
         /// <summary>
         /// String property for custom usage. This field is not processed by eSeller, but carried forward to order, free to be use any purpose. 
@@ -137,8 +133,7 @@ namespace Commerce.Api.Model
 
         private string _UserCode3;
 
-        [JsonIgnore]
-        public bool UserCode2IsSet { get; set; }
+        [JsonIgnore] public bool UserCode2IsSet { get; set; }
 
         /// <summary>
         /// String property for custom usage. This field is not processed by eSeller, but carried forward to order, free to be use any purpose. 
@@ -154,14 +149,12 @@ namespace Commerce.Api.Model
             }
         }
 
-        [JsonIgnore]
-        public bool UserCode3IsSet { get; set; }
+        [JsonIgnore] public bool UserCode3IsSet { get; set; }
 
 
         private string _Description1;
 
-        [JsonIgnore]
-        public bool Description1IsSet { get; set; }
+        [JsonIgnore] public bool Description1IsSet { get; set; }
 
         /// <summary>
         /// Gets or sets description. Only applicable if item is of type = "text"
@@ -193,8 +186,7 @@ namespace Commerce.Api.Model
 
         private string _Description3;
 
-        [JsonIgnore]
-        public bool Description2IsSet { get; set; }
+        [JsonIgnore] public bool Description2IsSet { get; set; }
 
         /// <summary>
         /// Gets or sets a third description. This field is not processed by eSeller, but carried forward to order, free to be use any purpose. This participates in uniqueness of a basket line.
@@ -209,7 +201,6 @@ namespace Commerce.Api.Model
             }
         }
 
-        [JsonIgnore]
-        public bool Description3IsSet { get; set; }
+        [JsonIgnore] public bool Description3IsSet { get; set; }
     }
 }

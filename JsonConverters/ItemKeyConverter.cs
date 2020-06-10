@@ -6,7 +6,10 @@ namespace Commerce.Api.Model.JsonConverters
 {
     public class ItemKeyConverter : JsonConverter
     {
-        public override bool CanConvert(Type objectType) => objectType == typeof(ItemKey);
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(ItemKey);
+        }
 
         public override object ReadJson(
             JsonReader reader,
@@ -83,13 +86,11 @@ namespace Commerce.Api.Model.JsonConverters
 
                 default:
                     if (!Enum.TryParse(
-                            (string) obj["typeOfItem"] ?? string.Empty,
-                            true,
-                            out TypeOfItem mk
-                        ))
-                    {
+                        (string) obj["typeOfItem"] ?? string.Empty,
+                        true,
+                        out TypeOfItem mk
+                    ))
                         throw new Exception($"typeOfItem {(string) obj["typeOfItem"]} is not supported.");
-                    }
 
                     return new ItemKey(
                         menuId,

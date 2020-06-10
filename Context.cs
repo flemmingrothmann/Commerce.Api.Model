@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Commerce.Api.Model
 {
-    public class Context : ResourceResponse
+    public class Context
     {
         public DateTime? PriceCalculationDate { get; set; }
         public string PriceListId { get; set; }
 
-        public string InventoryCheck { get; internal set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public InventoryCheck InventoryCheck { get; internal set; }
+
         public bool IsLive { get; set; }
         public Customer Customer { get; set; }
         public Authentication Authentication { get; set; }
@@ -17,5 +22,12 @@ namespace Commerce.Api.Model
         public Currency Currency { get; set; }
         public Location Location { get; set; }
         public DataItemsResponseBody<Setting> Settings { get; set; }
+        public List<ResourceLink> Links { get; set; }
+    }
+
+    public enum InventoryCheck
+    {
+        Suspended,
+        Active
     }
 }

@@ -12,11 +12,9 @@ namespace Commerce.Api.Model
         public string Attention { get; set; }
         public string Name { get; set; }
 
-        [JsonProperty("Address")]
-        public string StreetName { get; set; }
+        [JsonProperty("Address")] public string StreetName { get; set; }
 
-        [JsonProperty("Address2")]
-        public string StreetName2 { get; set; }
+        [JsonProperty("Address2")] public string StreetName2 { get; set; }
 
         public string ZipCode { get; set; }
         public string City { get; set; }

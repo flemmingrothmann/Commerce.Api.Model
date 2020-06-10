@@ -1,4 +1,7 @@
-﻿namespace Commerce.Api.Model
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace Commerce.Api.Model
 {
     public class ValidationMessageResponse
     {
@@ -6,7 +9,8 @@
         /// The severity of the message. 
         /// </summary>
 
-        public string Severity { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Severity Severity { get; set; }
 
 
         /// <summary>
@@ -37,5 +41,15 @@
         /// Together with kind, this identifies exactly what item caused the message.
         /// </summary>
         public string Reference { get; set; }
+    }
+
+    public enum Severity
+    {
+        Debug = 0,
+        Info = 1,
+        Warning = 2,
+        Error = 3,
+        Fatal = 4,
+        Security = 10
     }
 }

@@ -2,7 +2,10 @@
 {
     public class DataItemsResponse<T> : ResponseBase where T : new()
     {
-        public DataItemsResponse() => Data = new DataItemsResponseBody<T>();
+        public DataItemsResponse()
+        {
+            Data = new DataItemsResponseBody<T>();
+        }
 
         /// <summary>
         /// Gets or sets the data portion of the response.

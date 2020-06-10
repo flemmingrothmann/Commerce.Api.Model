@@ -79,6 +79,9 @@ namespace Commerce.Api.Model
         public decimal? SuggestedQuantity { get; set; }
         public string Ean { get; set; }
 
+        /// <summary>
+        /// Makes variants of product lists. Used for favorite lists.
+        /// </summary>
         public T Annotation { get; set; }
     }
 }

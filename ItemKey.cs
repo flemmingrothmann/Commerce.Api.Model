@@ -33,9 +33,7 @@ namespace Commerce.Api.Model
         public ItemKey(long itemId, int typeOfItemId)
         {
             if (itemId > int.MaxValue || itemId < int.MinValue)
-            {
                 throw new InvalidCastException($"itemId value {itemId} is outside of integer range.");
-            }
 
             _ItemId = (int) itemId;
             _TypeOfItem = (TypeOfItem) typeOfItemId;
@@ -56,16 +54,14 @@ namespace Commerce.Api.Model
         public ItemKey(long itemId, TypeOfItem kind)
         {
             if (itemId > int.MaxValue || itemId < int.MinValue)
-            {
                 throw new InvalidCastException($"itemId value {itemId} is outside of integer range.");
-            }
 
             _ItemId = (int) itemId;
             _TypeOfItem = kind;
         }
 
         // ReSharper disable once UnusedParameter.Local
-        private ItemKey( SerializationInfo info, StreamingContext text)
+        private ItemKey(SerializationInfo info, StreamingContext text)
             : this()
         {
             _ItemId = info.GetInt32("i");
@@ -105,10 +101,13 @@ namespace Commerce.Api.Model
         public int ItemId => _ItemId;
         public TypeOfItem TypeOfItem => _TypeOfItem;
 
-        public override int GetHashCode() => BuildHashCode(
-            _ItemId,
-            _TypeOfItem
-        );
+        public override int GetHashCode()
+        {
+            return BuildHashCode(
+                _ItemId,
+                _TypeOfItem
+            );
+        }
 
         ///// <summary>
         ///// <inheritdoc />
@@ -120,31 +119,54 @@ namespace Commerce.Api.Model
         ///// </summary>
         //public string BuildCacheKey() => $"Item[{TypeOfItem}, {ItemId}]";
 
-        public override bool Equals(object obj) => obj is ItemKey && this == (ItemKey) obj;
+        public override bool Equals(object obj)
+        {
+            return obj is ItemKey && this == (ItemKey) obj;
+        }
 
-        public static bool operator ==(ItemKey x, ItemKey y) => x.ItemId == y.ItemId && x.TypeOfItem == y.TypeOfItem;
+        public static bool operator ==(ItemKey x, ItemKey y)
+        {
+            return x.ItemId == y.ItemId && x.TypeOfItem == y.TypeOfItem;
+        }
 
-        public static bool operator !=(ItemKey x, ItemKey y) => !(x == y);
+        public static bool operator !=(ItemKey x, ItemKey y)
+        {
+            return !(x == y);
+        }
 
         public static bool operator <(ItemKey x, ItemKey y)
-            => x.TypeOfItem < y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId < y.ItemId;
+        {
+            return x.TypeOfItem < y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId < y.ItemId;
+        }
 
         public static bool operator <=(ItemKey x, ItemKey y)
-            => x.TypeOfItem < y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId <= y.ItemId;
+        {
+            return x.TypeOfItem < y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId <= y.ItemId;
+        }
 
         public static bool operator >(ItemKey x, ItemKey y)
-            => x.TypeOfItem > y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId > y.ItemId;
+        {
+            return x.TypeOfItem > y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId > y.ItemId;
+        }
 
         public static bool operator >=(ItemKey x, ItemKey y)
-            => x.TypeOfItem > y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId >= y.ItemId;
+        {
+            return x.TypeOfItem > y.TypeOfItem || x.TypeOfItem == y.TypeOfItem && x.ItemId >= y.ItemId;
+        }
 
 
-        public int CompareTo(ItemKey other) => this == other
-                                                   ? 0
-                                                   : this > other
-                                                       ? 1
-                                                       : -1;
+        public int CompareTo(ItemKey other)
+        {
+            return this == other
+                ? 0
+                : this > other
+                    ? 1
+                    : -1;
+        }
 
-        public override string ToString() => $"[{TypeOfItem}, {ItemId}]";
+        public override string ToString()
+        {
+            return $"[{TypeOfItem}, {ItemId}]";
+        }
     }
 }

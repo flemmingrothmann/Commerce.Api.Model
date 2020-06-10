@@ -2,11 +2,14 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Commerce.Api.Model
+namespace Commerce.Api.Model.JsonConverters
 {
     public class ItemStringKeyConverter : JsonConverter
     {
-        public override bool CanConvert(Type objectType) => objectType == typeof(ItemStringKey);
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(ItemStringKey);
+        }
 
         public override object ReadJson(
             JsonReader reader,
@@ -83,13 +86,11 @@ namespace Commerce.Api.Model
 
                 default:
                     if (!Enum.TryParse(
-                            (string) obj["typeOfItem"] ?? string.Empty,
-                            true,
-                            out TypeOfItem mk
-                        ))
-                    {
+                        (string) obj["typeOfItem"] ?? string.Empty,
+                        true,
+                        out TypeOfItem mk
+                    ))
                         throw new Exception($"typeOfItem {(string) obj["typeOfItem"]} is not supported.");
-                    }
 
                     return new ItemStringKey(
                         menuId,

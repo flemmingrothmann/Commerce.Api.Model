@@ -4,12 +4,11 @@ using Newtonsoft.Json;
 
 namespace Commerce.Api.Model
 {
-    public class Customer : ResourceResponse
+    public class Customer
     {
         public int CustomerId { get; set; }
 
-        [JsonConverter(typeof(FlagConverter))]
-        public CustomerPolicies Policies { get; set; }
+        [JsonConverter(typeof(FlagConverter))] public CustomerPolicies Policies { get; set; }
 
         /// <summary>
         /// The currency that should be considered preferred by customer if any.
@@ -22,5 +21,6 @@ namespace Commerce.Api.Model
 
         public List<Address> ShipToAddresses { get; set; }
         public string ExtCustomerId { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }

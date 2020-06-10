@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Commerce.Api.Model.JsonConverters;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Commerce.Api.Model
 {
-    public class BasketLineResponse : ResourceResponse
+    public class BasketLineResponse
     {
         public int LineId { get; set; }
         public string Tag { get; set; }
@@ -17,7 +19,8 @@ namespace Commerce.Api.Model
         [JsonConverter(typeof(ItemKeyConverter))]
         public ItemKey ItemKey { get; set; }
 
-        public string ItemSubType { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public LineSubType ItemSubType { get; set; }
 
         public int? InternalItemId2 { get; set; }
 
@@ -41,7 +44,7 @@ namespace Commerce.Api.Model
 
         public string ExternalItemId2 { get; set; }
         public string SecondaryId { get; set; }
-        public string EAN { get; set; }
+        public string Ean { get; set; }
 
         /// <summary>
         /// In case of integrating with  Point Of Sales system, the identification to that system may be listed here.
@@ -60,5 +63,6 @@ namespace Commerce.Api.Model
         public string UserCode1 { get; set; }
         public string UserCode2 { get; set; }
         public string UserCode3 { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }

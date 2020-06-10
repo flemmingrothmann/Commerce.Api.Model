@@ -21,21 +21,15 @@ namespace Commerce.Api.Model.JsonConverters
         )
         {
             if (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>))
-            {
                 objectType = objectType.GetGenericArguments().First();
-            }
 
             string strValue;
             if (reader.TokenType == JsonToken.StartArray)
             {
                 var stringList = new List<string>();
                 while (reader.Read() && reader.TokenType != JsonToken.EndArray)
-                {
                     if (reader.Value is string valueString)
-                    {
                         stringList.Add(valueString);
-                    }
-                }
 
                 strValue = string.Join(
                     ",",
@@ -65,8 +59,8 @@ namespace Commerce.Api.Model.JsonConverters
         {
             var allValues = Enum.GetValues(value.GetType());
             var setValues = (from object flag in allValues
-                             where (int) flag != 0 && ((int) value & (int) flag) != 0
-                             select $"\"{flag.ToString()}\"").ToList();
+                where (int) flag != 0 && ((int) value & (int) flag) != 0
+                select $"\"{flag.ToString()}\"").ToList();
 
             writer.WriteRawValue($"[{string.Join(", ", setValues)}]");
 
@@ -78,7 +72,9 @@ namespace Commerce.Api.Model.JsonConverters
             //writer.WriteRawValue($"[{string.Join(", ", flags)}]");
         }
 
-        public override bool CanConvert( Type objectType)
-            => objectType.IsEnum && objectType.GetCustomAttributes(typeof(FlagsAttribute)).FirstOrDefault() != null;
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType.IsEnum && objectType.GetCustomAttributes(typeof(FlagsAttribute)).FirstOrDefault() != null;
+        }
     }
 }

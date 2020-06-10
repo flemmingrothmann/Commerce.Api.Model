@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Commerce.Api.Model
 {
-    public class Location : ResourceResponse
+    public class Location
     {
         public long LocationId { get; set; }
         public string ExtLocationId { get; set; }
@@ -30,5 +30,6 @@ namespace Commerce.Api.Model
         public List<OpeningHour> OpeningHours { get; set; }
         public List<OpeningHour> SpecialOpeningHours { get; set; }
         public List<DateTime> CollectTimes { get; set; }
+        public List<ResourceLink> Links { get; set; }
     }
 }
