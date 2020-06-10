@@ -12,10 +12,11 @@
       The Newtonsoft.Json package is required as typeconverters are utilized.
     </Description>
     <Copyright>fiftytwo.com</Copyright>
-    <PackageTags>fiftytwo</PackageTags>
+    <PackageTags>fiftytwo, 52ECOMMERCE, eSeller Cloud</PackageTags>
     <Version>1.0.6</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/flemmingrothmann/Commerce.Api.Model</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
