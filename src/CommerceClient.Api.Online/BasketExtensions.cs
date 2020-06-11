@@ -131,6 +131,44 @@ namespace CommerceClient.Api.Online
             return response.Data;
         }
 
+        /// <summary>
+        /// Gets the state of the basket. 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <param name="basketId"></param>
+        /// <returns></returns>
+        public static (List<HeaderSetMessage> HeaderSetMessages, Context BasketResponse) GetBasketState(
+            this Connection conn,
+            IClientState state,
+            int basketId
+        )
+        {
+            var restRequest = conn.CreateRestRequestJson(
+                    Method.GET,
+                    "/services/v3/baskets/{basketId}/state"
+                )
+                .AddParameter(
+                    "basketId",
+                    basketId,
+                    ParameterType.UrlSegment
+                )
+                .AddParameter(
+                    "include",
+                    "description",
+                    ParameterType.QueryString
+                );
+
+
+            var (headerSetMessages, response) = conn.Execute<DataResponse<Context>>(
+                restRequest,
+                state,
+                true
+            );
+
+            return (headerSetMessages, response.Data);
+        }
+
         public static List<BasketResponse> GetBaskets(this Connection conn, IClientState state)
         {
             var restRequest = new RestRequest("/services/v3/baskets")

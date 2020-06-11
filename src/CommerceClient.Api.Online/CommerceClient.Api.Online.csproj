@@ -7,16 +7,15 @@
     <Company>fiftytwo.com</Company>
     <PackageId>52eCommerce.api.online</PackageId>
     <Product>52eESELLER api client</Product>
-    <Description>
-      Provides methods and extensions for accessing 52eESELLER cloud web shops using its v3 api.
-      Internally it utilizes RestSharp for data transport and Newtonsoft.Json for serialization.
-    </Description>
+    <Description>Provides methods and extensions for accessing 52eESELLER cloud web shops using its v3 api.
+</Description>
     <Copyright>fiftytwo.com</Copyright>
     <PackageTags>fiftytwo, ecommerce, eSeller Cloud, 52eESELLER</PackageTags>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/flemmingrothmann/CommerceClient.Api</PackageProjectUrl>
+    <PackageReleaseNotes>Added support for basket context and product-by-id api resources</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
@@ -28,7 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="52eCommerce.api.model" Version="1.0.7" />
+    <PackageReference Include="52eCommerce.api.model" Version="1.0.8" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
