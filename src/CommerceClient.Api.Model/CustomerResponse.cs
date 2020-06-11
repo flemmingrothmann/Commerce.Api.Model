@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CommerceClient.Api.Model
 {
-    public class Customer
+    public class CustomerResponse
     {
         public int CustomerId { get; set; }
 
