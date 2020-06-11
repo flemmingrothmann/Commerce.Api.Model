@@ -11,17 +11,6 @@ dotnet_diagnostic.CA1062.severity = none
 # CA2227: Collection properties should be read only
 #dotnet_diagnostic.CA2227.severity = none
 
-# IDE0022: Use block body for methods
-#csharp_style_expression_bodied_methods = true:none
-
-# CA1055: Uri return values should not be strings
-#dotnet_diagnostic.CA1055.severity = none
-
 # CA1056: Uri properties should not be strings
 dotnet_diagnostic.CA1056.severity = none
 
-# CA1065: Do not raise exceptions in unexpected locations
-#dotnet_diagnostic.CA1065.severity = warning
-
-#dotnet_diagnostic.CA1065.severity = warning
-#dotnet_diagnostic.CA1801.severity = warning
