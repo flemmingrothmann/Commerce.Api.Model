@@ -31,65 +31,101 @@ namespace CommerceClient.Api.Online
         )
             where T : new()
         {
+            if (conn == null)
+            {
+                throw new ArgumentNullException(nameof(conn));
+            }
+
+            if (restRequest == null)
+            {
+                throw new ArgumentNullException(nameof(restRequest));
+            }
+
+            if (state == null)
+            {
+                throw new ArgumentNullException(nameof(state));
+            }
+
+            if (conn == null)
+            {
+                throw new ArgumentNullException(nameof(conn));
+            }
+
             var request =
                 restRequest;
 
             request.Timeout = Convert.ToInt32(conn.RequestTimeout.TotalMilliseconds);
             if (!request.Parameters.Any(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept"))
+            {
                 request.AddHeader(
                     "Accept",
                     "application/Json,text/json"
                 );
+            }
 
             if (conn.IgnoreSslErrors)
+            {
                 request.AddHeader(
                     EndPointManagerServiceCertificateCallbackHack.IgnoreSslErrorsHeaderKey,
                     "true"
                 );
+            }
 
             if (conn.HostOverride != null)
+            {
                 request.AddHeader(
                     "X-HostOverride",
                     conn.HostOverride
                 );
+            }
 
             /*
              * Inject context
              */
             if (includeAuthentication && state?.AuthenticationToken != null)
+            {
                 request.AddParameter(
                     "X-Authentication",
                     state.AuthenticationToken,
                     ParameterType.HttpHeader
                 );
+            }
 
             if (state?.LanguageId != null)
+            {
                 request.AddParameter(
                     "langId",
                     state.LanguageId,
                     ParameterType.QueryString
                 );
+            }
 
             if (state?.CurrencyId != null)
+            {
                 request.AddParameter(
                     "currId",
                     state.CurrencyId,
                     ParameterType.QueryString
                 );
+            }
 
             if (state?.CountryId != null)
+            {
                 request.AddParameter(
                     "counId",
                     state.CountryId,
                     ParameterType.QueryString
                 );
+            }
 
             if (state?.LocationId != null)
+            {
                 request.AddParameter(
                     "locId",
                     state.LocationId,
                     ParameterType.QueryString
                 );
+            }
             /*
              * End context injection
              */
@@ -103,7 +139,9 @@ namespace CommerceClient.Api.Online
             {
                 const string message = "Error retrieving response.  Check inner details for more info.";
                 throw new Exception(
+#pragma warning disable CA1303 // Do not pass literals as localized parameters Localization!
                     message,
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
                     response.ErrorException
                 );
             }
@@ -131,7 +169,10 @@ namespace CommerceClient.Api.Online
 
                         headerSet.Value = strings[0] == "null" ? null : strings[0];
 
-                        if (strings.Length > 1) headerSet.Priority = strings[1];
+                        if (strings.Length > 1)
+                        {
+                            headerSet.Priority = strings[1];
+                        }
 
                         headers.Add(headerSet);
                     }

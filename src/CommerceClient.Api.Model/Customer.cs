@@ -8,7 +8,8 @@ namespace CommerceClient.Api.Model
     {
         public int CustomerId { get; set; }
 
-        [JsonConverter(typeof(FlagConverter))] public CustomerPolicies Policies { get; set; }
+        [JsonConverter(typeof(FlagConverter))]
+        public CustomerPolicies Policies { get; set; }
 
         /// <summary>
         /// The currency that should be considered preferred by customer if any.

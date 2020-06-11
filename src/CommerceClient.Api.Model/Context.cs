@@ -15,7 +15,7 @@ namespace CommerceClient.Api.Model
 
         public bool IsLive { get; set; }
         public Customer Customer { get; set; }
-        public Authentication Authentication { get; set; }
+        public AuthenticationResponse Authentication { get; set; }
 
         public Language Language { get; set; }
         public Country Country { get; set; }
@@ -23,11 +23,5 @@ namespace CommerceClient.Api.Model
         public Location Location { get; set; }
         public DataItemsResponseBody<Setting> Settings { get; set; }
         public List<ResourceLink> Links { get; set; }
-    }
-
-    public enum InventoryCheck
-    {
-        Suspended,
-        Active
     }
 }

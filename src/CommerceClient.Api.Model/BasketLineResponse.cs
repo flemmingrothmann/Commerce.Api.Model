@@ -54,7 +54,9 @@ namespace CommerceClient.Api.Model
         public decimal? Quantity { get; set; }
         public Price LineAmount { get; set; }
         public Price UnitPrice { get; set; }
+#pragma warning disable CA1056 // Uri properties should not be strings
         public string ItemUrl { get; set; }
+#pragma warning restore CA1056 // Uri properties should not be strings
         public string Description1 { get; set; }
         public string Description2 { get; set; }
         public string Description3 { get; set; }

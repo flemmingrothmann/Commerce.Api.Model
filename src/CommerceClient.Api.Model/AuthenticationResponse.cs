@@ -2,7 +2,7 @@
 
 namespace CommerceClient.Api.Model
 {
-    public class Authentication
+    public class AuthenticationResponse
     {
         /// <summary>
         /// This is the same as set in authentication header

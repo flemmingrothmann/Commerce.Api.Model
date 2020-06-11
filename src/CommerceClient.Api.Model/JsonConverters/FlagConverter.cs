@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
@@ -20,16 +21,42 @@ namespace CommerceClient.Api.Model.JsonConverters
             JsonSerializer serializer
         )
         {
+            if (reader == null)
+            {
+                throw new ArgumentNullException(nameof(reader));
+            }
+
+            if (objectType == null)
+            {
+                throw new ArgumentNullException(nameof(objectType));
+            }
+
+            if (existingValue == null)
+            {
+                throw new ArgumentNullException(nameof(existingValue));
+            }
+
+            if (serializer == null)
+            {
+                throw new ArgumentNullException(nameof(serializer));
+            }
+
             if (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
                 objectType = objectType.GetGenericArguments().First();
+            }
 
             string strValue;
             if (reader.TokenType == JsonToken.StartArray)
             {
                 var stringList = new List<string>();
                 while (reader.Read() && reader.TokenType != JsonToken.EndArray)
+                {
                     if (reader.Value is string valueString)
+                    {
                         stringList.Add(valueString);
+                    }
+                }
 
                 strValue = string.Join(
                     ",",
@@ -57,10 +84,25 @@ namespace CommerceClient.Api.Model.JsonConverters
             JsonSerializer serializer
         )
         {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (serializer == null)
+            {
+                throw new ArgumentNullException(nameof(serializer));
+            }
+
             var allValues = Enum.GetValues(value.GetType());
             var setValues = (from object flag in allValues
-                where (int) flag != 0 && ((int) value & (int) flag) != 0
-                select $"\"{flag.ToString()}\"").ToList();
+                             where (int) flag != 0 && ((int) value & (int) flag) != 0
+                             select $"\"{flag.ToString()}\"").ToList();
 
             writer.WriteRawValue($"[{string.Join(", ", setValues)}]");
 
@@ -73,8 +115,9 @@ namespace CommerceClient.Api.Model.JsonConverters
         }
 
         public override bool CanConvert(Type objectType)
-        {
-            return objectType.IsEnum && objectType.GetCustomAttributes(typeof(FlagsAttribute)).FirstOrDefault() != null;
-        }
+            => objectType?.IsEnum == true &&
+               objectType.GetCustomAttributes(typeof(FlagsAttribute))
+                   .FirstOrDefault() !=
+               null;
     }
 }

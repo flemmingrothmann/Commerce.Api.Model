@@ -6,6 +6,7 @@ namespace CommerceClient.Api.Model
     public class InputFieldPolicyResponse
     {
         public string FieldName { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public KindOfField Kind { get; set; }
 

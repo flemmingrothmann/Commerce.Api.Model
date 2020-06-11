@@ -1,6 +1,9 @@
-﻿namespace CommerceClient.Api.Model
+﻿using System;
+
+namespace CommerceClient.Api.Model
 {
-    public class Error
+    [Serializable]
+    public class ErrorResponse
     {
         //public ErrorResponseBody() => Errors = new System.Collections.Generic.List<ApiError>();
         public int Code { get; set; }

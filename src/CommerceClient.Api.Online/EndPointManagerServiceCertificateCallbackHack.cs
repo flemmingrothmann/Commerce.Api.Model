@@ -4,8 +4,10 @@ namespace CommerceClient.Api.Online
 {
     public static class EndPointManagerServiceCertificateCallbackHack
     {
-        public static object ServerCertificateValidationCallbackDelegate =
+#pragma warning disable CA1823
+        private static object ServerCertificateValidationCallbackDelegate =
             RegisterServerCertificateValidationCallback();
+#pragma warning restore CA1823
 
         private static object RegisterServerCertificateValidationCallback()
         {
@@ -15,9 +17,9 @@ namespace CommerceClient.Api.Online
 
         /// <summary>
         /// Add this header to your web request / RestRequest to ignore any certificate errors due to having test or self-signed certificates on an endpoint
-        /// servig your request.
+        /// serving your request.
         /// </summary>
-        public static string IgnoreSslErrorsHeaderKey = "X-IgnoreSslErrors";
+        public const string IgnoreSslErrorsHeaderKey = "X-IgnoreSslErrors";
 
         private static bool ServerCertificateValidationCallback(
             object sender,

@@ -5,6 +5,6 @@ namespace CommerceClient.Api.Model
     [Serializable]
     public class ErrorResponseBase : ResponseBase
     {
-        public Error Error { get; set; }
+        public ErrorResponse Error { get; set; }
     }
 }

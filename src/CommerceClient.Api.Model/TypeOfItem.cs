@@ -36,13 +36,15 @@ namespace CommerceClient.Api.Model
         /// Line references a Logica Product Assortment.
         /// </summary>
         /// <remarks></remarks>
-        [Obsolete("Dead feature")] LogicaProductAssortment = 5,
+        [Obsolete("Dead feature")]
+        LogicaProductAssortment = 5,
 
         /// <summary>
         /// Line references a Logica Product Assortment Variant.
         /// </summary>
         /// <remarks></remarks>
-        [Obsolete("Dead feature")] LogicaProductAssortmentVariant = 6,
+        [Obsolete("Dead feature")]
+        LogicaProductAssortmentVariant = 6,
 
         /// <summary>
         /// Shipment details, method and cost.
@@ -65,7 +67,8 @@ namespace CommerceClient.Api.Model
         /// Line references a Logica Product Variant contained in an Assortment.
         /// </summary>
         /// <remarks></remarks>
-        [Obsolete("Dead feature")] LogicaProductAssortmentProductVariant = 10,
+        [Obsolete("Dead feature")]
+        LogicaProductAssortmentProductVariant = 10,
 
         /// <summary>
         /// Line references a configured product. This will most likely have child lines of various types, which are closely linked to this line.

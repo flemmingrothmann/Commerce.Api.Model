@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Newtonsoft.Json;
 using RestSharp.Deserializers;
 using RestSharp.Serializers;
@@ -41,6 +42,11 @@ namespace CommerceClient.Api.Online
 
         public T Deserialize<T>(RestSharp.IRestResponse response)
         {
+            if (response == null)
+            {
+                throw new ArgumentNullException(nameof(response));
+            }
+
             var content = response.Content;
 
             using (var stringReader = new StringReader(content))

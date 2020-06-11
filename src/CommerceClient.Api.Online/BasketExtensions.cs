@@ -11,8 +11,7 @@ namespace CommerceClient.Api.Online
             this Connection conn,
             ClientState state
         )
-        {
-            return conn.Execute<DataResponse<BasketResponse>>(
+            => conn.Execute<DataResponse<BasketResponse>>(
                     conn.CreateRestRequestJson(
                         Method.POST,
                         "/services/v3/baskets"
@@ -21,7 +20,6 @@ namespace CommerceClient.Api.Online
                     true
                 )
                 .Response.Data;
-        }
 
         public static List<BasketLineResponse> GetBasketLines(
             this Connection conn,
@@ -29,12 +27,16 @@ namespace CommerceClient.Api.Online
             int basketId
         )
         {
-            var restRequest = conn.CreateRestRequestJson(Method.GET, "/services/v3/baskets/{basketId}/lines")
+            var restRequest = conn.CreateRestRequestJson(
+                    Method.GET,
+                    "/services/v3/baskets/{basketId}/lines"
+                )
                 .AddParameter(
                     "basketId",
                     basketId,
                     ParameterType.UrlSegment
-                ).AddParameter(
+                )
+                .AddParameter(
                     "include",
                     "description",
                     ParameterType.QueryString
@@ -104,7 +106,10 @@ namespace CommerceClient.Api.Online
             int basketId
         )
         {
-            var restRequest = conn.CreateRestRequestJson(Method.GET, "/services/v3/baskets/{basketId}")
+            var restRequest = conn.CreateRestRequestJson(
+                    Method.GET,
+                    "/services/v3/baskets/{basketId}"
+                )
                 .AddParameter(
                     "basketId",
                     basketId,

@@ -6,7 +6,9 @@ namespace CommerceClient.Api.Model
     {
         public float? Score { get; set; }
 
+#pragma warning disable CA1056 // Uri properties should not be strings
         public string NavigateUrl { get; set; }
+#pragma warning restore CA1056 // Uri properties should not be strings
 
         public string NavigateText { get; set; }
 

@@ -16,7 +16,10 @@ namespace CommerceClient.Api.Online
             int? maxSearchResults
         )
         {
-            var restRequest = conn.CreateRestRequestJson(Method.GET, "/services/v3/products/list")
+            var restRequest = conn.CreateRestRequestJson(
+                    Method.GET,
+                    "/services/v3/products/list"
+                )
                 .AddParameter(
                     "imagesizetypeids",
                     1,
@@ -24,46 +27,58 @@ namespace CommerceClient.Api.Online
                 );
 
             if (searchString.ToNullIfWhite() != null)
+            {
                 restRequest.AddParameter(
                     "search",
                     searchString,
                     ParameterType.QueryString
                 );
+            }
 
             if (sortOption.ToNullIfWhite() != null)
+            {
                 restRequest.AddParameter(
                     "sort",
                     sortOption,
                     ParameterType.QueryString
                 );
+            }
 
             if (menuId != null)
+            {
                 restRequest.AddParameter(
                     "mId",
                     menuId,
                     ParameterType.QueryString
                 );
+            }
 
             if (page != null)
+            {
                 restRequest.AddParameter(
                     "p",
                     page,
                     ParameterType.QueryString
                 );
+            }
 
             if (pageSize != null)
+            {
                 restRequest.AddParameter(
                     "rp",
                     pageSize,
                     ParameterType.QueryString
                 );
+            }
 
             if (maxSearchResults != null)
+            {
                 restRequest.AddParameter(
                     "maxSearchResults",
                     maxSearchResults,
                     ParameterType.QueryString
                 );
+            }
 
 
             var retval = conn.Execute<DataProductListResponse<Product<object>>>(

@@ -5,7 +5,7 @@ namespace CommerceClient.Api.Model
 {
     [Serializable]
     //[ProtoBuf.ProtoContract]
-    public struct ItemStringKey : IComparable<ItemStringKey>, ISerializable
+    public struct ItemStringKey : IComparable<ItemStringKey>, ISerializable, IEquatable<ItemStringKey>
     {
         /// <summary>
         /// A <see cref="ItemStringKey"/>, that does not exist in any model. It has the same meaning as null (Nothing).
@@ -34,8 +34,10 @@ namespace CommerceClient.Api.Model
         }
 
         // ReSharper disable once UnusedParameter.Local
+#pragma warning disable CA1801
         private ItemStringKey(SerializationInfo info, StreamingContext text)
             : this()
+#pragma warning restore CA1801
         {
             _ItemId = info.GetString("i");
             _TypeOfItem = (TypeOfItem) info.GetInt32("k");
@@ -43,6 +45,11 @@ namespace CommerceClient.Api.Model
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            if (info == null)
+            {
+                return;
+            }
+
             info.AddValue(
                 "i",
                 _ItemId
@@ -59,7 +66,11 @@ namespace CommerceClient.Api.Model
             unchecked // Overflow is fine, just wrap
             {
                 var hash = 17;
+#if NETCOREAPP
+                hash = hash * 23 + itemId.GetHashCode(StringComparison.OrdinalIgnoreCase);
+#else
                 hash = hash * 23 + itemId.GetHashCode();
+#endif
                 hash = hash * 23 + kind.GetHashCode();
                 return hash;
             }
@@ -74,90 +85,64 @@ namespace CommerceClient.Api.Model
         public string ItemId => _ItemId;
         public TypeOfItem TypeOfItem => _TypeOfItem;
 
-        public override int GetHashCode()
-        {
-            return BuildHashCode(
-                _ItemId,
-                _TypeOfItem
-            );
-        }
+        public override int GetHashCode() => BuildHashCode(
+            _ItemId,
+            _TypeOfItem
+        );
 
-        public override bool Equals(object obj)
-        {
-            return obj is ItemStringKey && this == (ItemStringKey) obj;
-        }
+        public override bool Equals(object obj) => obj is ItemStringKey && this == (ItemStringKey) obj;
 
         public static bool operator ==(ItemStringKey x, ItemStringKey y)
-        {
-            return x.ItemId == y.ItemId && x.TypeOfItem == y.TypeOfItem;
-        }
+            => x.ItemId == y.ItemId && x.TypeOfItem == y.TypeOfItem;
 
-        public static bool operator !=(ItemStringKey x, ItemStringKey y)
-        {
-            return !(x == y);
-        }
+        public static bool operator !=(ItemStringKey x, ItemStringKey y) => !(x == y);
 
-        public static bool operator <(ItemStringKey x, ItemStringKey y)
-        {
-            return x.TypeOfItem < y.TypeOfItem ||
-                   x.TypeOfItem == y.TypeOfItem &&
-                   string.Compare(
-                       x.ItemId,
-                       y.ItemId,
-                       StringComparison.OrdinalIgnoreCase
-                   ) <
-                   0;
-        }
+        public static bool operator <(ItemStringKey x, ItemStringKey y) => x.TypeOfItem < y.TypeOfItem ||
+                                                                           x.TypeOfItem == y.TypeOfItem &&
+                                                                           string.Compare(
+                                                                               x.ItemId,
+                                                                               y.ItemId,
+                                                                               StringComparison.OrdinalIgnoreCase
+                                                                           ) <
+                                                                           0;
 
-        public static bool operator <=(ItemStringKey x, ItemStringKey y)
-        {
-            return x.TypeOfItem < y.TypeOfItem ||
-                   x.TypeOfItem == y.TypeOfItem &&
-                   string.Compare(
-                       x.ItemId,
-                       y.ItemId,
-                       StringComparison.OrdinalIgnoreCase
-                   ) <=
-                   0;
-        }
+        public static bool operator <=(ItemStringKey x, ItemStringKey y) => x.TypeOfItem < y.TypeOfItem ||
+                                                                            x.TypeOfItem == y.TypeOfItem &&
+                                                                            string.Compare(
+                                                                                x.ItemId,
+                                                                                y.ItemId,
+                                                                                StringComparison.OrdinalIgnoreCase
+                                                                            ) <=
+                                                                            0;
 
-        public static bool operator >(ItemStringKey x, ItemStringKey y)
-        {
-            return x.TypeOfItem > y.TypeOfItem ||
-                   x.TypeOfItem == y.TypeOfItem &&
-                   string.Compare(
-                       x.ItemId,
-                       y.ItemId,
-                       StringComparison.OrdinalIgnoreCase
-                   ) >
-                   0;
-        }
+        public static bool operator >(ItemStringKey x, ItemStringKey y) => x.TypeOfItem > y.TypeOfItem ||
+                                                                           x.TypeOfItem == y.TypeOfItem &&
+                                                                           string.Compare(
+                                                                               x.ItemId,
+                                                                               y.ItemId,
+                                                                               StringComparison.OrdinalIgnoreCase
+                                                                           ) >
+                                                                           0;
 
-        public static bool operator >=(ItemStringKey x, ItemStringKey y)
-        {
-            return x.TypeOfItem > y.TypeOfItem ||
-                   x.TypeOfItem == y.TypeOfItem &&
-                   string.Compare(
-                       x.ItemId,
-                       y.ItemId,
-                       StringComparison.OrdinalIgnoreCase
-                   ) >=
-                   0;
-        }
+        public static bool operator >=(ItemStringKey x, ItemStringKey y) => x.TypeOfItem > y.TypeOfItem ||
+                                                                            x.TypeOfItem == y.TypeOfItem &&
+                                                                            string.Compare(
+                                                                                x.ItemId,
+                                                                                y.ItemId,
+                                                                                StringComparison.OrdinalIgnoreCase
+                                                                            ) >=
+                                                                            0;
 
 
-        public int CompareTo(ItemStringKey other)
-        {
-            return this == other
-                ? 0
-                : this > other
-                    ? 1
-                    : -1;
-        }
+        public int CompareTo(ItemStringKey other) => this == other
+                                                         ? 0
+                                                         : this > other
+                                                             ? 1
+                                                             : -1;
 
-        public override string ToString()
-        {
-            return $"[{TypeOfItem}, \"{ItemId}\"]";
-        }
+        public override string ToString() => $"[{TypeOfItem}, \"{ItemId}\"]";
+
+        public bool Equals(ItemStringKey other)
+            => other == null ? false : this == other;
     }
 }

@@ -41,7 +41,5 @@ namespace CommerceClient.Api.Online
         public TimeSpan RequestTimeout { get; set; } = TimeSpan.FromSeconds(30);
         public string HostOverride { get; set; }
         internal IRestClient Client { get; }
-
-        internal void ResponseSetHeader(string key, string value) { }
     }
 }
