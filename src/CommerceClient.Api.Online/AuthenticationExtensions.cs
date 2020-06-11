@@ -8,7 +8,7 @@ namespace CommerceClient.Api.Online
 {
     public static class AuthenticationExtensions
     {
-        public static (List<HeaderSetMessage> HeaderSetMessages, Authentication Data)
+        public static (List<HeaderSetMessage> HeaderSetMessages, AuthenticationResponse Data)
             AuthenticateAsCustomer(
                 this Connection conn,
                 IClientState state,
@@ -16,7 +16,7 @@ namespace CommerceClient.Api.Online
                 string password
             )
         {
-            var (headerSetMessages, response) = conn.Execute<DataResponse<Authentication>>(
+            var (headerSetMessages, response) = conn.Execute<DataResponse<AuthenticationResponse>>(
                 new Authenticate
                     {
                         UserName = userName,
@@ -34,13 +34,13 @@ namespace CommerceClient.Api.Online
         }
 
 
-        public static (List<HeaderSetMessage> HeaderSetMessages, Authentication Data) AuthenticateAsAnonymous(
+        public static (List<HeaderSetMessage> HeaderSetMessages, AuthenticationResponse Data) AuthenticateAsAnonymous(
             this Connection conn,
             IClientState state,
             Guid? visitorToken
         )
         {
-            var (headerSetMessages, response) = conn.Execute<DataResponse<Authentication>>(
+            var (headerSetMessages, response) = conn.Execute<DataResponse<AuthenticationResponse>>(
                 new Authenticate
                 {
                     VisitorGuid = visitorToken,

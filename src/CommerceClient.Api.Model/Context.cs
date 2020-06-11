@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace CommerceClient.Api.Model
 {
-    public class Context
+    public class Context // Aka ContextRequestBody!
     {
         public DateTime? PriceCalculationDate { get; set; }
         public string PriceListId { get; set; }
