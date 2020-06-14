@@ -11,6 +11,7 @@ namespace CommerceClient.Api.Online
             this Connection conn,
             IClientState state,
             IEnumerable<ItemKey> itemKeys,
+            IEnumerable<int> imageSizeTypes,
             string sortOption,
             int? page,
             int? pageSize,
@@ -18,31 +19,40 @@ namespace CommerceClient.Api.Online
             string includes // "shortdesc,longdesc,seo"
         )
         {
-            var itemKeysJson = string.Join(",",
+            var itemKeysJson = string.Join(
+                ",",
                 itemKeys.Select(x => x.ToJsonString()).ToList()
-                );
+            );
             var restRequest = conn.CreateRestRequestJson(
                     Method.GET,
                     "/services/v3/products"
-                )
-                .AddParameter(
-                    "imagesizetypeids",
-                    1,
-                    ParameterType.QueryString
                 )
                 .AddParameter(
                     "itemkeys",
                     $"[{itemKeysJson}]",
                     ParameterType.QueryString
                 );
-            
 
-            if(!string.IsNullOrWhiteSpace(includes))
+            if (imageSizeTypes != null)
+            {
+                restRequest.AddParameter(
+                    "imagesizetypeids",
+                    string.Join(
+                        ",",
+                        imageSizeTypes
+                    ),
+                    ParameterType.QueryString
+                );
+            }
+
+            if (!string.IsNullOrWhiteSpace(includes))
+            {
                 restRequest.AddParameter(
                     "include",
                     includes,
                     ParameterType.QueryString
                 );
+            }
 
             if (sortOption.ToNullIfWhite() != null)
             {
@@ -53,7 +63,7 @@ namespace CommerceClient.Api.Online
                 );
             }
 
-           
+
             if (page != null)
             {
                 restRequest.AddParameter(
@@ -181,8 +191,6 @@ namespace CommerceClient.Api.Online
         /// Returns the content as a json representation. Used for passing info to ui.
         /// </summary>
         internal static string ToJsonString(this ItemKey k)
-            => $"{{\"itemId\":\"{k.ItemId}\",\"typeOfItem\":\"{k.TypeOfItem.ToString()}\"}}";
-
-
+            => $"{{\"itemId\":\"{k.ItemId}\",\"typeOfItem\":\"{k.TypeOfItem}\"}}";
     }
 }
