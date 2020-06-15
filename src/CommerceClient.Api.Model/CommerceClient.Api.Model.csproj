@@ -11,11 +11,12 @@
 </Description>
     <Copyright>fiftytwo.com</Copyright>
     <PackageTags>fiftytwo, ecommerce, eSeller Cloud, 52eESELLER</PackageTags>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/flemmingrothmann/CommerceClient.Api</PackageProjectUrl>
     <PackageReleaseNotes>Added model for basket state response</PackageReleaseNotes>
+    <PackageIcon>NugetIcon.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
@@ -42,6 +43,13 @@
     <AdditionalFiles Update="C:\Users\fro\source\repos\flemmingrothmann\CommerceClient.Api\src\CommerceClient.Api.Model\.editorconfig">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </AdditionalFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\NugetIcon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
