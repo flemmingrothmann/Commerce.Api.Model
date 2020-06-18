@@ -13,8 +13,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -27,6 +27,7 @@ jobs:
         dotnet-version: 3.1.101
     
     - name: Install dependencies
+      working-directory: src/CommerceClient.Api.Model
       run: dotnet restore
       
       #
@@ -35,7 +36,7 @@ jobs:
       
       #
     - name: Publish CommerceClient.Api.Model
-      uses: brandedoutcast/publish-nuget@v2.5.2
+      uses: rohith/publish-nuget@v2
       with:
           PROJECT_FILE_PATH: src/CommerceClient.Api.Model/CommerceClient.Api.Model.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
