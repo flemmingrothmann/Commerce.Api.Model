@@ -1,7 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Publish Packages
-
+name: Publish Online to NuGet
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -24,7 +23,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 3.1.300
     
     - name: Install dependencies
       working-directory: src/CommerceClient.Api.Online
