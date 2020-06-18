@@ -37,7 +37,5 @@ jobs:
       
       #
     - name: Publish CommerceClient.Api.Model
-      uses: rohith/publish-nuget@v2
-      with:
-          PROJECT_FILE_PATH: src/CommerceClient.Api.Model/CommerceClient.Api.Model.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      working-directory: src/CommerceClient.Api.Model
+      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }}  -n|--no-symbols --skip-duplicate -s https://api.nuget.org/v3/index.json
