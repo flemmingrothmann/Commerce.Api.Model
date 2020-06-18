@@ -37,4 +37,4 @@ jobs:
       #
     - name: Publish CommerceClient.Api.Online
       working-directory: src/CommerceClient.Api.Online
-      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }} --no-symbols --skip-duplicate -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 
