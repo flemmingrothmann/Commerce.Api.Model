@@ -15,7 +15,7 @@ namespace CommerceClient.Api.Model
         /// </summary>
         public string Ticket { get; set; }
 
-        public CustomerLogin CustomerLogin { get; set; }
+        public CustomerLoginResponse CustomerLogin { get; set; }
         public SalesPersonLogin SalesPersonLogin { get; set; }
 
         public string Role { get; set; }

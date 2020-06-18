@@ -2,7 +2,7 @@
 
 namespace CommerceClient.Api.Model
 {
-    public class CustomerLogin
+    public class CustomerLoginResponse
     {
         public int CustomerLoginId { get; set; }
         public string UserName { get; set; }
@@ -11,5 +11,6 @@ namespace CommerceClient.Api.Model
         public Currency Currency { get; set; }
         public Language Language { get; set; }
         public List<ResourceLink> Links { get; set; }
+        public List<InputFieldPolicyResponse> Constraints { get; set; }
     }
 }
