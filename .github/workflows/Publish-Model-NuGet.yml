@@ -32,6 +32,7 @@ jobs:
       
       #
     - name: Build
+      working-directory: src/CommerceClient.Api.Model
       run: dotnet build --configuration Release --no-restore
       
       #
