@@ -38,4 +38,4 @@ jobs:
       #
     - name: Publish CommerceClient.Api.Model
       working-directory: src/CommerceClient.Api.Model
-      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }}  -n|--no-symbols --skip-duplicate -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }} --no-symbols --skip-duplicate -s https://api.nuget.org/v3/index.json
