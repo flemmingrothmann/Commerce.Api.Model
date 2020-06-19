@@ -18,7 +18,7 @@ Namespaces included:
 </Description>
     <Copyright>fiftytwo.com</Copyright>
     <PackageTags>fiftytwo, ecommerce, eSeller Cloud, 52eESELLER</PackageTags>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/flemmingrothmann/CommerceClient.Api</PackageProjectUrl>
