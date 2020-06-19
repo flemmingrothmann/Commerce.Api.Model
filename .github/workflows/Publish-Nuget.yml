@@ -1,7 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Publish Online to NuGet
-# Controls when the action will run. Triggers the workflow on push or pull request
+name: Publish ScanCommerce.Api package to NuGet.org
+
+# Controls when the action will run. Triggers the workflow on push request
 # events but only for the master branch
 on:
   push:
@@ -35,10 +36,6 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
       #
-    - name: Publish CommerceClient.Api.Model
-      working-directory: src/CommerceClient.Api.Model
-      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
-    #
-    - name: Publish CommerceClient.Api.Online
+    - name: Publish CommerceClient.Api
       working-directory: src/CommerceClient.Api.Online
       run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
