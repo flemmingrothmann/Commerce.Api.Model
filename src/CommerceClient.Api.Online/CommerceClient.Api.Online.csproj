@@ -51,5 +51,8 @@ Namespaces included:
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommerceClient.Api.Model\CommerceClient.Api.Model.csproj" />
+  </ItemGroup>
 
 </Project>
