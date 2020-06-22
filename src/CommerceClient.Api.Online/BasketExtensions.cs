@@ -7,6 +7,12 @@ namespace CommerceClient.Api.Online
 {
     public static class BasketExtensions
     {
+        /// <summary>
+        /// Creates a new basket.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static BasketResponse CreateNewBasket(
             this Connection conn,
             ClientState state
@@ -21,6 +27,13 @@ namespace CommerceClient.Api.Online
                 )
                 .Response.Data;
 
+        /// <summary>
+        /// Gets all lines for the specified basket.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <param name="basketId"></param>
+        /// <returns></returns>
         public static List<BasketLineResponse> GetBasketLines(
             this Connection conn,
             IClientState state,
@@ -52,6 +65,14 @@ namespace CommerceClient.Api.Online
             return response.Data.Items;
         }
 
+        /// <summary>
+        /// Adds one or more items to basket.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <param name="basketId"></param>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public static List<ValidationMessageResponse> AddToBasket(
             this Connection conn,
             ClientState state,
@@ -73,6 +94,13 @@ namespace CommerceClient.Api.Online
                 )
                 .Response.Data?.Items;
 
+        /// <summary>
+        /// Removes a line from basket by its id.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <param name="basketId"></param>
+        /// <param name="basketLineId"></param>
         public static void DeleteBasketLine(
             this Connection conn,
             ClientState state,
@@ -100,6 +128,13 @@ namespace CommerceClient.Api.Online
             );
         }
 
+        /// <summary>
+        /// Gets detailed information on a specific basket.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <param name="basketId"></param>
+        /// <returns></returns>
         public static BasketResponse GetBasket(
             this Connection conn,
             IClientState state,
@@ -132,7 +167,7 @@ namespace CommerceClient.Api.Online
         }
 
         /// <summary>
-        /// Gets the state of the basket. 
+        /// Gets the state of the basket, i.e. properties, that may or should affect the client state. 
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="state"></param>
@@ -169,6 +204,48 @@ namespace CommerceClient.Api.Online
             return (headerSetMessages, response.Data);
         }
 
+        /// <summary>
+        /// Gets status of the basket, expressed as a series of requisites, each composed of an action needed to be completed,
+        /// an optional reference to the completion item, plus any (optional) requirements / actions that needs to complete
+        /// in order to mark this action as completed.
+        /// The action / requirement model depends on you to have an understanding how to fulfill each requirement.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <param name="basketId"></param>
+        /// <returns></returns>
+        public static DataItemsResponseBody<BasketRequisiteResponse> GetBasketStatus(
+            this Connection conn,
+            IClientState state,
+            int basketId
+        )
+        {
+            var restRequest = conn.CreateRestRequestJson(
+                    Method.GET,
+                    "/services/v3/baskets/{basketId}/status"
+                )
+                .AddParameter(
+                    "basketId",
+                    basketId,
+                    ParameterType.UrlSegment
+                );
+
+
+            var (_, response) = conn.Execute<DataItemsResponse<BasketRequisiteResponse>>(
+                restRequest,
+                state,
+                true
+            );
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Gets a list of your available baskets.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static List<BasketResponse> GetBaskets(this Connection conn, IClientState state)
         {
             var restRequest = new RestRequest("/services/v3/baskets")
