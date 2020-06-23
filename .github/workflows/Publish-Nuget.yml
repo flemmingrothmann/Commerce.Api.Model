@@ -42,4 +42,4 @@ jobs:
       
     - name: Publish CommerceClient.Api to github
       working-directory: src/CommerceClient.Api.Online
-      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.GITHUB_TOKEN }}  -s "github"  --skip-duplicate
+      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.GITHUB_TOKEN }}  -s "https://nuget.pkg.github.com/flemmingrothmann/index.json"  --skip-duplicate
