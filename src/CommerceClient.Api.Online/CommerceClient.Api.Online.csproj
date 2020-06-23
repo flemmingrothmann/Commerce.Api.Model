@@ -24,6 +24,7 @@ Namespaces included:
     <PackageProjectUrl>https://github.com/flemmingrothmann/CommerceClient.Api</PackageProjectUrl>
     <PackageReleaseNotes>The initial release provides (only) access to a limited number of 52eSELLER api v3 resources.</PackageReleaseNotes>
     <PackageIcon>NugetIcon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/flemmingrothmann/CommerceClient.Api</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
