@@ -269,5 +269,30 @@ namespace CommerceClient.Api.Online
 
             return response.Data.Items;
         }
+
+        public static void UpdateSellTo(
+            this Connection conn,
+            IClientState state,
+            int basketId,
+            AddressSellToRequest sellToRequest
+        )
+        {
+            var restRequest = sellToRequest.CreateRestRequestJson(
+                    Method.PUT,
+                    "/services/v3/baskets/{basketId}/sellto"
+                )
+                .AddParameter(
+                    "basketId",
+                    basketId,
+                    ParameterType.UrlSegment
+                );
+
+
+            conn.ExecuteNonQuery(
+                restRequest,
+                state,
+                true
+            );
+        }
     }
 }
