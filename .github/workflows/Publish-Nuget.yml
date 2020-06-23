@@ -43,13 +43,18 @@ jobs:
 #    - name: Publish CommerceClient.Api to github
 #      working-directory: src/CommerceClient.Api.Online
 #      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.GITHUB_TOKEN }}  -s "https://nuget.pkg.github.com/flemmingrothmann/index.json"  --skip-duplicate
-      
+    
+    - name: Install Nuget
+      uses: nuget/setup-nuget@v1
+      with:        
+        nuget-version: '5.x'
+
     - name: Nuget Add Source
-      run: dotnet nuget sources Add -Name "github" -Source https://nuget.pkg.github.com/flemmingrothmann/index.json -UserName [flemmingrothmann] -Password ${{ secrets.GITHUB_TOKEN }}
+      run: nuget sources Add -Name "github" -Source https://nuget.pkg.github.com/flemmingrothmann/index.json -UserName [flemmingrothmann] -Password ${{ secrets.GITHUB_TOKEN }}
 
     - name: Nuget SetAPIKey
-      run: dotnet nuget setapikey ${{ secrets.GITHUB_TOKEN }} -Source "github"
+      run: nuget setapikey ${{ secrets.GITHUB_TOKEN }} -Source "github"
 
     - name: Publish the package to GitHub packages
       working-directory: src/CommerceClient.Api.Online
-      run: dotnet nuget push bin\Debug\*.nupkg -source "github" -SkipDuplicate
+      run: nuget push bin\Debug\*.nupkg -source "github" -SkipDuplicate
