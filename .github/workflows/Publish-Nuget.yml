@@ -57,4 +57,4 @@ jobs:
 
     - name: Publish the package to GitHub packages
       working-directory: src/CommerceClient.Api.Online
-      run: nuget push bin\Debug\*.nupkg -source "github" -SkipDuplicate
+      run: nuget push bin\Release\*.nupkg -source "github" -SkipDuplicate
