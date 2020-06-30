@@ -95,7 +95,7 @@ namespace CommerceClient.Api.Online
             var (_, response) = conn.Execute<DataProductListResponse<Product<object>>>(
                 restRequest,
                 state,
-                false
+                Includes.Ticket
             );
 
             return response.Data;
@@ -181,7 +181,7 @@ namespace CommerceClient.Api.Online
             var (_, response) = conn.Execute<DataProductListResponse<Product<object>>>(
                 restRequest,
                 state,
-                false
+                Includes.Ticket
             );
 
             return response.Data;

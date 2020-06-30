@@ -16,5 +16,9 @@ namespace CommerceClient.Api.Online
         public string TicketToken { get; set; }
         public string AuthenticationToken { get; set; }
         public Guid? VisitorId { get; set; }
+        public string ApiKey { get; set; }
+        public string ApiSecret { get; set; }
+        public string InstallationId { get; set; }
+
     }
 }

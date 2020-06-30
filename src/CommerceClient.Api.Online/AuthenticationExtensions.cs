@@ -28,7 +28,7 @@ namespace CommerceClient.Api.Online
                         "/services/v3/auth/authenticate"
                     ),
                 state,
-                true
+                Includes.Auth
             );
             return (headerSetMessages, response.Data);
         }
@@ -50,7 +50,7 @@ namespace CommerceClient.Api.Online
                     "/services/v3/auth/authenticate"
                 ),
                 state,
-                true
+                Includes.Auth
             );
             return (headerSetMessages, response.Data);
         }

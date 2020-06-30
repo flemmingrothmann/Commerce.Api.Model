@@ -17,7 +17,7 @@ namespace CommerceClient.Api.Online
                     Method = Method.GET
                 },
                 state,
-                true
+                Includes.None
             );
             return (headerSetMessages, response.Data);
         }

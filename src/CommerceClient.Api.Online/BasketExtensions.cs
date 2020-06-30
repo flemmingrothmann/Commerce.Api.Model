@@ -23,7 +23,7 @@ namespace CommerceClient.Api.Online
                         "/services/v3/baskets"
                     ),
                     state,
-                    true
+                    Includes.Auth
                 )
                 .Response.Data;
 
@@ -59,7 +59,7 @@ namespace CommerceClient.Api.Online
             var (_, response) = conn.Execute<DataItemsResponse<BasketLineResponse>>(
                 restRequest,
                 state,
-                true
+                Includes.Auth
             );
 
             return response.Data.Items;
@@ -90,7 +90,7 @@ namespace CommerceClient.Api.Online
                             ParameterType.UrlSegment
                         ),
                     state,
-                    true
+                    Includes.Auth
                 )
                 .Response.Data?.Items;
 
@@ -124,7 +124,7 @@ namespace CommerceClient.Api.Online
                         ParameterType.UrlSegment
                     ),
                 state,
-                true
+                Includes.Auth
             );
         }
 
@@ -160,7 +160,7 @@ namespace CommerceClient.Api.Online
             var (_, response) = conn.Execute<DataResponse<BasketResponse>>(
                 restRequest,
                 state,
-                true
+                Includes.Auth
             );
 
             return response.Data;
@@ -198,7 +198,7 @@ namespace CommerceClient.Api.Online
             var (headerSetMessages, response) = conn.Execute<DataResponse<Context>>(
                 restRequest,
                 state,
-                true
+                Includes.Auth
             );
 
             return (headerSetMessages, response.Data);
@@ -234,7 +234,7 @@ namespace CommerceClient.Api.Online
             var (_, response) = conn.Execute<DataItemsResponse<BasketRequisiteResponse>>(
                 restRequest,
                 state,
-                true
+                Includes.Auth
             );
 
             return response.Data;
@@ -264,7 +264,7 @@ namespace CommerceClient.Api.Online
             var (_, response) = conn.Execute<DataItemsResponse<BasketResponse>>(
                 restRequest,
                 state,
-                true
+                Includes.Auth
             );
 
             return response.Data.Items;
@@ -291,7 +291,7 @@ namespace CommerceClient.Api.Online
             conn.ExecuteNonQuery(
                 restRequest,
                 state,
-                true
+                Includes.Auth
             );
         }
     }
