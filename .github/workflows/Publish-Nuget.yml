@@ -40,21 +40,18 @@ jobs:
       working-directory: src/CommerceClient.Api.Online
       run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
       
-#    - name: Publish CommerceClient.Api to github
+# No current need to support github nuget packages    
+#    - name: Install Nuget
+#      uses: nuget/setup-nuget@v1
+#      with:        
+#        nuget-version: '5.x'
+#
+#    - name: Nuget Add Source
+#      run: nuget sources Add -Name "github" -Source https://nuget.pkg.github.com/flemmingrothmann/index.json -UserName [flemmingrothmann] -Password ${{ secrets.GITHUB_TOKEN }}
+#
+#    - name: Nuget SetAPIKey
+#      run: nuget setapikey ${{ secrets.GITHUB_TOKEN }} -Source "github"
+#
+#    - name: Publish the package to GitHub packages
 #      working-directory: src/CommerceClient.Api.Online
-#      run: dotnet nuget push bin\Release\*.nupkg -k ${{ secrets.GITHUB_TOKEN }}  -s "https://nuget.pkg.github.com/flemmingrothmann/index.json"  --skip-duplicate
-    
-    - name: Install Nuget
-      uses: nuget/setup-nuget@v1
-      with:        
-        nuget-version: '5.x'
-
-    - name: Nuget Add Source
-      run: nuget sources Add -Name "github" -Source https://nuget.pkg.github.com/flemmingrothmann/index.json -UserName [flemmingrothmann] -Password ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Nuget SetAPIKey
-      run: nuget setapikey ${{ secrets.GITHUB_TOKEN }} -Source "github"
-
-    - name: Publish the package to GitHub packages
-      working-directory: src/CommerceClient.Api.Online
-      run: nuget push bin\Release\*.nupkg -source "github" -SkipDuplicate
+#      run: nuget push bin\Release\*.nupkg -source "github" -SkipDuplicate
